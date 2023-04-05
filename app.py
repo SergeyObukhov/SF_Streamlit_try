@@ -85,40 +85,40 @@ item_embeddings, nms_idx = load_embeddings()
 
 
 # добавим заголовок нашего проекта
-st.title("Recommendation System Of Books")
+st.title("Рекомендательная система книг")
 
 # добавим описание проекта
-st.markdown("""Welcome to the web page of the book recommendation app!
-This application is a prototype of a recommendation system based on a machine learning model.
+st.markdown("""Добро пожаловать на веб-страницу рекомендаций книг!
+Это приложение является прототипом рекомендательной системы, основанной на машинном обучении.
 
-To use the application, you need:
-1. Enter the approximate name of the book you like
-2. Select its exact name in the pop-up list of books
-3. Specify the number of books you need to recommend
+Чтобы использовать приложение, вам нужно:
+1. Введите примерное название понравившейся книги на английском языке
+2. Выберите его точное название во всплывающем списке книг
+3. Укажите количество книг, которые вам нужно порекомендовать
 
-After that, the application will give you a list of books most similar to the book you specified""")
+После этого приложение выдаст вам список книг, наиболее похожих на указанную вами книгу.""")
 
 # Вводим строку для поиска книг
-title = st.text_input('Please enter book name', '')
+title = st.text_input('Пожалуйста, введите название книги', '')
 title = title.lower()
 
 #Выполняем поиск по книгам — ищем неполные совпадения
 output = books[books['title'].apply(lambda x: x.lower().find(title)) >= 0]
 
 #Выбор книги из списка
-option = st.selectbox("Select the book you need", output['title'].values)
+option = st.selectbox("Выберите нужную книгу", output['title'].values)
 
 #Проверяем, что поле не пустое
 if option:
     #Выводим выбранную книгу
-    st.markdown('You selected: "{}"'.format(option))
+    st.markdown('Вы выбрали: "{}"'.format(option))
 
     #Находим book_id для указанной книги
     val_index = output[output['title'].values == option]['book_id'].values
 
     #Указываем количество рекомендаций
     count_recomendation = st.number_input(
-        label="Specify the number of recommendations you need",
+        label="Укажите необходимое количество рекомендаций",
         value=10
     )
 
@@ -128,7 +128,7 @@ if option:
     ids, distances = ids[1:], distances[1:]
 
     #Выводим рекомендации к книге
-    st.markdown('Most simmilar books are: ')
+    st.markdown('Наиболее похожие книги: ')
     #Составляем DataFrame из рекомендаций
     df = get_recomendation_df(ids, distances, name_mapper, author_mapper)
     #Выводим DataFrame в интерфейсе
@@ -140,7 +140,7 @@ if option:
         x='book_name',
         y='distance',
         hover_data=['book_author'],
-        title='Cosine distance to the nearest books'
+        title='Косинусное расстояние до ближайших книг'
     )
     # Отображаем график в интерфейсе
     st.write(fig)
