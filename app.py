@@ -140,7 +140,7 @@ if option:
         x='book_name',
         y='distance',
         hover_data=['book_author'],
-        title='Косинусное расстояние до ближайших книг'
+        title='Уровень схожести'
     )
     # Отображаем график в интерфейсе
     st.write(fig)
