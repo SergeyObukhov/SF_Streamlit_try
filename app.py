@@ -144,3 +144,19 @@ if option:
     )
     # Отображаем график в интерфейсе
     st.write(fig)
+
+# запуск вручную
+# streamlit run app.py
+
+
+# Создайте пустой репозиторий проекта на GitHub. Он может быть общедоступным или частным — это не имеет значения
+# Создайте файл с зависимостями
+# pip freeze > requirements.txt
+# Инициализируйте локальный репозиторий, добавьте все файлы в список отслеживаемых и сделайте коммит
+# git init
+# git add .
+# git commit -m 'Initial commit'
+# Свяжите локальный репозиторий с удалённым и сделайте push проекта на GitHub
+# git branch -M master
+# git remote add origin https://github.com/SergeyObukhov/SF_Streamlit_try
+# git push -u origin master
